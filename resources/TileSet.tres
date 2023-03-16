@@ -1,0 +1,21 @@
+[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://bom52cegxulne"]
+
+[ext_resource type="Texture2D" uid="uid://c546equjjifx2" path="res://assets/textures/tilemap/select.svg" id="1_8eyff"]
+[ext_resource type="Texture2D" uid="uid://nb5gftr6pjnp" path="res://assets/textures/tilemap/floor.svg" id="2_hqkri"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5uif6"]
+texture = ExtResource("1_8eyff")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_canei"]
+texture = ExtResource("2_hqkri")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/modulate = Color(0.47451, 0.682353, 0.498039, 1)
+
+[resource]
+tile_shape = 1
+tile_size = Vector2i(64, 32)
+sources/0 = SubResource("TileSetAtlasSource_5uif6")
+sources/1 = SubResource("TileSetAtlasSource_canei")

@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://berssyxf4bbpx"]
+[gd_scene load_steps=6 format=3 uid="uid://berssyxf4bbpx"]
 
 [ext_resource type="Script" path="res://scenes/Main.cs" id="1_7il3a"]
 [ext_resource type="Script" path="res://src/controllers/TurnController.cs" id="2_bglrt"]
 [ext_resource type="Script" path="res://src/controllers/CharacterController.cs" id="2_jyghp"]
 [ext_resource type="PackedScene" uid="uid://mps6wu3ybdp8" path="res://src/character/Character.tscn" id="3_5t1dp"]
+[ext_resource type="TileSet" uid="uid://bom52cegxulne" path="res://resources/TileSet.tres" id="5_mwral"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_7il3a")
@@ -20,5 +21,27 @@ script = ExtResource("2_bglrt")
 
 [node name="Characters" type="Node" parent="World"]
 
-[node name="Character" parent="World/Characters" instance=ExtResource("3_5t1dp")]
-position = Vector2(574, 292)
+[node name="Player" parent="World/Characters" instance=ExtResource("3_5t1dp")]
+modulate = Color(0.345098, 0.65098, 0.901961, 1)
+position = Vector2(544, 304)
+
+[node name="Enemy" parent="World/Characters" instance=ExtResource("3_5t1dp")]
+modulate = Color(0.882353, 0.494118, 0.494118, 1)
+position = Vector2(608, 272)
+
+[node name="TileMap" type="TileMap" parent="World"]
+y_sort_enabled = true
+texture_filter = 1
+tile_set = ExtResource("5_mwral")
+format = 2
+layer_0/name = "Select"
+layer_0/y_sort_enabled = true
+layer_0/y_sort_origin = 1
+layer_0/tile_data = PackedInt32Array(1114120, 0, 0)
+layer_1/name = "Floor"
+layer_1/enabled = true
+layer_1/modulate = Color(1, 1, 1, 1)
+layer_1/y_sort_enabled = true
+layer_1/y_sort_origin = 0
+layer_1/z_index = 0
+layer_1/tile_data = PackedInt32Array(1179656, 1, 0, 1114120, 1, 0, 1048585, 1, 0, 1048584, 1, 0, 1179657, 1, 0, 983048, 1, 0, 1245192, 1, 0, 1114119, 1, 0, 1114121, 1, 0)
