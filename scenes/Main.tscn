@@ -1,13 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://berssyxf4bbpx"]
+[gd_scene load_steps=5 format=3 uid="uid://berssyxf4bbpx"]
 
 [ext_resource type="Script" path="res://scenes/Main.cs" id="1_7il3a"]
 [ext_resource type="Script" path="res://src/controllers/TurnController.cs" id="2_bglrt"]
+[ext_resource type="Script" path="res://src/controllers/CharacterController.cs" id="2_jyghp"]
 [ext_resource type="PackedScene" uid="uid://mps6wu3ybdp8" path="res://src/character/Character.tscn" id="3_5t1dp"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_7il3a")
 
 [node name="Controllers" type="Node" parent="."]
+
+[node name="CharacterController" type="Node" parent="Controllers"]
+script = ExtResource("2_jyghp")
 
 [node name="TurnController" type="Node" parent="Controllers"]
 script = ExtResource("2_bglrt")
@@ -17,3 +21,4 @@ script = ExtResource("2_bglrt")
 [node name="Characters" type="Node" parent="World"]
 
 [node name="Character" parent="World/Characters" instance=ExtResource("3_5t1dp")]
+position = Vector2(574, 292)

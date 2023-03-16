@@ -2,7 +2,7 @@ using Godot;
 using Godot.Collections;
 
 // TurnController
-// handles the turns of characters
+// handles character turns
 public partial class TurnController : Controller
 {
 	private Character _activeCharacter;
