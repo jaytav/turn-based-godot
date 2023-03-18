@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://berssyxf4bbpx"]
+[gd_scene load_steps=7 format=3 uid="uid://berssyxf4bbpx"]
 
 [ext_resource type="Script" path="res://scenes/Main.cs" id="1_7il3a"]
 [ext_resource type="Script" path="res://src/controllers/TurnController.cs" id="2_bglrt"]
 [ext_resource type="Script" path="res://src/controllers/CharacterController.cs" id="2_jyghp"]
+[ext_resource type="Script" path="res://src/controllers/CameraController.cs" id="2_k5u87"]
 [ext_resource type="PackedScene" uid="uid://mps6wu3ybdp8" path="res://src/character/Character.tscn" id="3_5t1dp"]
 [ext_resource type="TileSet" uid="uid://bom52cegxulne" path="res://resources/TileSet.tres" id="5_mwral"]
 
@@ -10,6 +11,9 @@
 script = ExtResource("1_7il3a")
 
 [node name="Controllers" type="Node" parent="."]
+
+[node name="CameraController" type="Node" parent="Controllers"]
+script = ExtResource("2_k5u87")
 
 [node name="CharacterController" type="Node" parent="Controllers"]
 script = ExtResource("2_jyghp")
@@ -45,3 +49,8 @@ layer_1/y_sort_enabled = true
 layer_1/y_sort_origin = 0
 layer_1/z_index = 0
 layer_1/tile_data = PackedInt32Array(1179656, 1, 0, 1114120, 1, 0, 1048585, 1, 0, 1048584, 1, 0, 1179657, 1, 0, 983048, 1, 0, 1245192, 1, 0, 1114119, 1, 0, 1114121, 1, 0)
+
+[node name="Camera2D" type="Camera2D" parent="World"]
+position = Vector2(544, 304)
+zoom = Vector2(2, 2)
+position_smoothing_enabled = true
