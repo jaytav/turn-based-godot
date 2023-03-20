@@ -1,11 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://berssyxf4bbpx"]
+[gd_scene load_steps=9 format=3 uid="uid://berssyxf4bbpx"]
 
 [ext_resource type="Script" path="res://scenes/Main.cs" id="1_7il3a"]
 [ext_resource type="Script" path="res://src/controllers/TurnController.cs" id="2_bglrt"]
 [ext_resource type="Script" path="res://src/controllers/CharacterController.cs" id="2_jyghp"]
 [ext_resource type="Script" path="res://src/controllers/CameraController.cs" id="2_k5u87"]
-[ext_resource type="PackedScene" uid="uid://mps6wu3ybdp8" path="res://src/character/Character.tscn" id="3_5t1dp"]
+[ext_resource type="PackedScene" uid="uid://d30hpb1oo075w" path="res://src/character/Character.tscn" id="3_5t1dp"]
 [ext_resource type="Script" path="res://src/controllers/TileMapController.cs" id="4_1q82a"]
+[ext_resource type="Script" path="res://src/controllers/PathfindingController.cs" id="4_ocksq"]
 [ext_resource type="TileSet" uid="uid://bom52cegxulne" path="res://resources/TileSet.tres" id="5_mwral"]
 
 [node name="Main" type="Node"]
@@ -18,6 +19,9 @@ script = ExtResource("2_k5u87")
 
 [node name="CharacterController" type="Node" parent="Controllers"]
 script = ExtResource("2_jyghp")
+
+[node name="PathfindingController" type="Node" parent="Controllers"]
+script = ExtResource("4_ocksq")
 
 [node name="TileMapController" type="Node" parent="Controllers"]
 script = ExtResource("4_1q82a")
