@@ -1,11 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://d30hpb1oo075w"]
+[gd_scene load_steps=5 format=3 uid="uid://bn6jdk3jmvtge"]
 
 [ext_resource type="Script" path="res://src/character/Character.cs" id="1_qe0to"]
 [ext_resource type="Script" path="res://src/character/stats/Stat.cs" id="2_p4g21"]
+[ext_resource type="Script" path="res://src/character/action/Move.cs" id="2_syhl4"]
 [ext_resource type="Texture2D" uid="uid://gqrkofa5mhja" path="res://assets/textures/character/character.svg" id="2_xvk4t"]
 
 [node name="Character" type="Node2D"]
 script = ExtResource("1_qe0to")
+
+[node name="Actions" type="Node" parent="."]
+
+[node name="Move" type="Node" parent="Actions"]
+script = ExtResource("2_syhl4")
+_cost = 3
 
 [node name="Stats" type="Node" parent="."]
 
@@ -14,10 +21,6 @@ script = ExtResource("2_p4g21")
 Value = 3
 
 [node name="ActionPoints" type="Node" parent="Stats"]
-script = ExtResource("2_p4g21")
-Value = 3
-
-[node name="MovePoints" type="Node" parent="Stats"]
 script = ExtResource("2_p4g21")
 Value = 3
 

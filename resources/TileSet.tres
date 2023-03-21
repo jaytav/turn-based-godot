@@ -1,7 +1,8 @@
-[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://bom52cegxulne"]
+[gd_resource type="TileSet" load_steps=7 format=3 uid="uid://bom52cegxulne"]
 
 [ext_resource type="Texture2D" uid="uid://c546equjjifx2" path="res://assets/textures/tilemap/select.svg" id="1_8eyff"]
 [ext_resource type="Texture2D" uid="uid://nb5gftr6pjnp" path="res://assets/textures/tilemap/floor.svg" id="2_hqkri"]
+[ext_resource type="Texture2D" uid="uid://b0m35uaxu31rq" path="res://assets/textures/tilemap/action.svg" id="3_wu6yl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5uif6"]
 texture = ExtResource("1_8eyff")
@@ -14,8 +15,14 @@ texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 0:0/0/modulate = Color(0.47451, 0.682353, 0.498039, 1)
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sqybm"]
+texture = ExtResource("3_wu6yl")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+
 [resource]
 tile_shape = 1
 tile_size = Vector2i(64, 32)
 sources/0 = SubResource("TileSetAtlasSource_5uif6")
 sources/1 = SubResource("TileSetAtlasSource_canei")
+sources/2 = SubResource("TileSetAtlasSource_sqybm")

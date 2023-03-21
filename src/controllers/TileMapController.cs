@@ -1,4 +1,5 @@
 using Godot;
+using Godot.Collections;
 
 // TileMapController
 // handle tilemap functions
@@ -16,14 +17,15 @@ public partial class TileMapController : Controller
         Floor,
     }
 
-    public TileMap TileMap;
+    public Vector2I CurrentMapPosition;
+    public Vector2 CurrentLocalPosition;
 
-    private Vector2I _currentMapPosition;
+    private TileMap _tileMap;
     private Node2D _world;
 
 	public override void Run()
 	{
-        TileMap = GetNode<TileMap>("/root/Main/World/TileMap");
+        _tileMap = GetNode<TileMap>("/root/Main/World/TileMap");
         _world = GetNode<Node2D>("/root/Main/World");
 	}
 
@@ -32,13 +34,14 @@ public partial class TileMapController : Controller
         if (@event is InputEventMouseMotion)
         {
             Vector2 mouseLocalPosition = _world.GetGlobalMousePosition();
-            Vector2I mouseMapPosition = TileMap.LocalToMap(mouseLocalPosition);
+            Vector2I mouseMapPosition = _tileMap.LocalToMap(mouseLocalPosition);
 
-            if (mouseMapPosition != _currentMapPosition)
+            if (mouseMapPosition != CurrentMapPosition)
             {
-                _currentMapPosition = mouseMapPosition;
-                TileMap.ClearLayer((int)TileMapLayer.Select);
-                TileMap.SetCell((int)TileMapLayer.Select, mouseMapPosition, (int)TileMapSource.Select, Vector2I.Zero);
+                CurrentMapPosition = mouseMapPosition;
+                CurrentLocalPosition = _tileMap.MapToLocal(CurrentMapPosition);
+                _tileMap.ClearLayer((int)TileMapLayer.Select);
+                _tileMap.SetCell((int)TileMapLayer.Select, mouseMapPosition, (int)TileMapSource.Select, Vector2I.Zero);
             }
         }
     }

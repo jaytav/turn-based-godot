@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://src/controllers/TurnController.cs" id="2_bglrt"]
 [ext_resource type="Script" path="res://src/controllers/CharacterController.cs" id="2_jyghp"]
 [ext_resource type="Script" path="res://src/controllers/CameraController.cs" id="2_k5u87"]
-[ext_resource type="PackedScene" uid="uid://d30hpb1oo075w" path="res://src/character/Character.tscn" id="3_5t1dp"]
+[ext_resource type="PackedScene" uid="uid://bn6jdk3jmvtge" path="res://src/character/Character.tscn" id="3_5t1dp"]
 [ext_resource type="Script" path="res://src/controllers/TileMapController.cs" id="4_1q82a"]
 [ext_resource type="Script" path="res://src/controllers/PathfindingController.cs" id="4_ocksq"]
 [ext_resource type="TileSet" uid="uid://bom52cegxulne" path="res://resources/TileSet.tres" id="5_mwral"]
@@ -49,7 +49,6 @@ format = 2
 layer_0/name = "Select"
 layer_0/y_sort_enabled = true
 layer_0/y_sort_origin = 1
-layer_0/tile_data = PackedInt32Array(1114120, 0, 0)
 layer_1/name = "Floor"
 layer_1/enabled = true
 layer_1/modulate = Color(1, 1, 1, 1)
@@ -57,6 +56,13 @@ layer_1/y_sort_enabled = true
 layer_1/y_sort_origin = 0
 layer_1/z_index = 0
 layer_1/tile_data = PackedInt32Array(1179656, 1, 0, 1114120, 1, 0, 1048585, 1, 0, 1048584, 1, 0, 1179657, 1, 0, 983048, 1, 0, 1245192, 1, 0, 1114119, 1, 0, 1114121, 1, 0)
+layer_2/name = "Action"
+layer_2/enabled = true
+layer_2/modulate = Color(1, 1, 1, 1)
+layer_2/y_sort_enabled = true
+layer_2/y_sort_origin = 1
+layer_2/z_index = 0
+layer_2/tile_data = PackedInt32Array()
 
 [node name="Camera2D" type="Camera2D" parent="World"]
 position = Vector2(544, 304)
