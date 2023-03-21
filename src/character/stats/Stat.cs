@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 public partial class Stat : Node
 {
@@ -15,7 +14,7 @@ public partial class Stat : Node
 
     private int _value;
 
-    private void setValue(int value)
+    protected virtual void setValue(int value)
     {
         _value = value;
         EmitSignal(nameof(ValueUpdated));

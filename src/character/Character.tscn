@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bn6jdk3jmvtge"]
+[gd_scene load_steps=6 format=3 uid="uid://bn6jdk3jmvtge"]
 
 [ext_resource type="Script" path="res://src/character/Character.cs" id="1_qe0to"]
-[ext_resource type="Script" path="res://src/character/stats/Stat.cs" id="2_p4g21"]
 [ext_resource type="Script" path="res://src/character/action/Move.cs" id="2_syhl4"]
 [ext_resource type="Texture2D" uid="uid://gqrkofa5mhja" path="res://assets/textures/character/character.svg" id="2_xvk4t"]
+[ext_resource type="Script" path="res://src/character/stats/BoundStat.cs" id="3_mmin2"]
+[ext_resource type="Script" path="res://src/character/effects/ReplenishBoundStat.cs" id="4_81ydn"]
 
 [node name="Character" type="Node2D"]
 script = ExtResource("1_qe0to")
@@ -17,12 +18,18 @@ _cost = 3
 [node name="Stats" type="Node" parent="."]
 
 [node name="HealthPoints" type="Node" parent="Stats"]
-script = ExtResource("2_p4g21")
-Value = 3
+script = ExtResource("3_mmin2")
+MaxValue = 3
 
 [node name="ActionPoints" type="Node" parent="Stats"]
-script = ExtResource("2_p4g21")
-Value = 3
+script = ExtResource("3_mmin2")
+MaxValue = 3
+
+[node name="Effects" type="Node" parent="."]
+
+[node name="ReplenishActionPoints" type="Node" parent="Effects" node_paths=PackedStringArray("_stat")]
+script = ExtResource("4_81ydn")
+_stat = NodePath("../../Stats/ActionPoints")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
