@@ -5,7 +5,34 @@ using Godot.Collections;
 // handles pathfinding for movement
 public partial class PathfindingController : Controller
 {
+    public Array<Vector2> MovableCells
+    {
+        get
+        {
+            Array<Vector2> cells = new Array<Vector2>();
+            Array<Vector2> immovableCells = new Array<Vector2>();
+
+            foreach (Character character in _characters.GetChildren())
+            {
+                immovableCells.Add(_tilemap.LocalToMap(character.Position));
+            }
+
+            foreach (Vector2 cell in _cellPointMap.Keys)
+            {
+                if (immovableCells.Contains(cell))
+                {
+                    continue;
+                }
+
+                cells.Add(cell);
+            }
+
+            return cells;
+        }
+    }
+
     private AStar2D _astar = new AStar2D();
+    private Node _characters;
     private TileMap _tilemap;
 
     private Dictionary<Vector2, long> _cellPointMap = new Dictionary<Vector2, long>();
@@ -13,6 +40,7 @@ public partial class PathfindingController : Controller
 
 	public override void Run()
 	{
+        _characters = GetNode("/root/Main/World/Characters");
         _tilemap = GetNode<TileMap>("/root/Main/World/TileMap");
         refreshAstar();
 	}

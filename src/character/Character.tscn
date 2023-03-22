@@ -15,6 +15,12 @@ script = ExtResource("1_qe0to")
 script = ExtResource("2_syhl4")
 _cost = 3
 
+[node name="Effects" type="Node" parent="."]
+
+[node name="ReplenishActionPoints" type="Node" parent="Effects" node_paths=PackedStringArray("_stat")]
+script = ExtResource("4_81ydn")
+_stat = NodePath("../../Stats/ActionPoints")
+
 [node name="Stats" type="Node" parent="."]
 
 [node name="HealthPoints" type="Node" parent="Stats"]
@@ -24,12 +30,6 @@ MaxValue = 3
 [node name="ActionPoints" type="Node" parent="Stats"]
 script = ExtResource("3_mmin2")
 MaxValue = 3
-
-[node name="Effects" type="Node" parent="."]
-
-[node name="ReplenishActionPoints" type="Node" parent="Effects" node_paths=PackedStringArray("_stat")]
-script = ExtResource("4_81ydn")
-_stat = NodePath("../../Stats/ActionPoints")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1

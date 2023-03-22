@@ -37,11 +37,17 @@ public partial class CharacterController : Controller
         }
         else if (@event.IsActionPressed("PrimaryAction"))
         {
+            Array<Vector2> cells = _activeAction.GetCells();
             Dictionary context = getActionContext();
-            Stat actionPoints = _activeCharacter.GetNode<Stat>("Stats/ActionPoints");
             int actionCost = _activeAction.Cost(context);
 
-            if (actionCost > actionPoints.Value) {
+            if (!cells.Contains((Vector2)context["MapPosition"]))
+            {
+                GD.Print($"CharacterController: action not within range");
+                return;
+            }
+
+            if (actionCost > _activeAction.ActionPoints.Value) {
                 GD.Print($"CharacterController: Not enough action points to do action: {_activeAction.Name}");
                 return;
             }
@@ -49,7 +55,10 @@ public partial class CharacterController : Controller
             _activeAction.Do(context);
 
             // remove action cost from action points
-            actionPoints.Value -= actionCost;
+            _activeAction.ActionPoints.Value -= actionCost;
+
+            // draw action range
+            _tileMapController.SetCells(_activeAction.GetCells(), TileMapController.TileMapLayer.Action, true);
         }
     }
 
@@ -72,5 +81,8 @@ public partial class CharacterController : Controller
 
         // default active action is the first action in the actions node tree
         _activeAction = _activeCharacter.GetNode("Actions").GetChild<Action>(0);
+
+        // draw default action range
+        _tileMapController.SetCells(_activeAction.GetCells(), TileMapController.TileMapLayer.Action, true);
     }
 }

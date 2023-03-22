@@ -9,12 +9,14 @@ public partial class TileMapController : Controller
     {
         Select,
         Floor,
+        Action,
     }
 
     public enum TileMapSource
     {
         Select,
         Floor,
+        Action,
     }
 
     public Vector2I CurrentMapPosition;
@@ -43,6 +45,20 @@ public partial class TileMapController : Controller
                 _tileMap.ClearLayer((int)TileMapLayer.Select);
                 _tileMap.SetCell((int)TileMapLayer.Select, mouseMapPosition, (int)TileMapSource.Select, Vector2I.Zero);
             }
+        }
+    }
+
+
+    public void SetCells(Array<Vector2> cells, TileMapLayer layer, bool clear)
+    {
+        if (clear)
+        {
+            _tileMap.ClearLayer((int)layer);
+        }
+
+        foreach (Vector2 cell in cells)
+        {
+            _tileMap.SetCell((int)layer, (Vector2I)cell, (int)layer, Vector2I.Zero);
         }
     }
 }
