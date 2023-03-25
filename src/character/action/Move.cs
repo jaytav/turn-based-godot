@@ -37,13 +37,22 @@ public partial class Move : Action
             Array<Vector2> path = _pathfindingController.GetPath(characterCell, moveableCell);
 
             // path longer than available action points
-            if (path.Count > ActionPoints.Value)
+            if (path.Count - 1 > ActionPoints.Value)
             {
                 continue;
             }
 
             cells.Add(moveableCell);
         }
+
+        return cells;
+    }
+
+    public override Array<Vector2> GetSecondaryCells(Vector2 position)
+    {
+        Vector2 characterCell = _tilemap.LocalToMap(Character.Position);
+        Array<Vector2> cells = _pathfindingController.GetPath(characterCell, position);
+        cells.Remove(characterCell);
 
         return cells;
     }

@@ -9,9 +9,14 @@ public abstract partial class Action : Node
     public Character Character;
     public BoundStat ActionPoints;
 
+    public TileMapController.TileMapId TileMapId = TileMapController.TileMapId.Move;
+    public TileMapController.TileMapId TileMapSecondaryId = TileMapController.TileMapId.MoveSecondary;
+
     public abstract void Do(Dictionary context);
 
     public abstract Array<Vector2> GetCells();
+
+    public abstract Array<Vector2> GetSecondaryCells(Vector2 position);
 
     public override void _Ready()
     {

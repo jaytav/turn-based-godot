@@ -5,21 +5,18 @@ using Godot.Collections;
 // handle tilemap functions
 public partial class TileMapController : Controller
 {
-    public enum TileMapLayer
+    [Signal]
+    public delegate void CurrentMapPositionUpdatedEventHandler(Vector2 position);
+
+    public enum TileMapId
     {
         Select,
         Floor,
-        Action,
+        Move,
+        MoveSecondary,
     }
 
-    public enum TileMapSource
-    {
-        Select,
-        Floor,
-        Action,
-    }
-
-    public Vector2I CurrentMapPosition;
+    public Vector2 CurrentMapPosition;
     public Vector2 CurrentLocalPosition;
 
     private TileMap _tileMap;
@@ -29,6 +26,7 @@ public partial class TileMapController : Controller
 	{
         _tileMap = GetNode<TileMap>("/root/Main/World/TileMap");
         _world = GetNode<Node2D>("/root/Main/World");
+        CurrentMapPositionUpdated += onCurrentMapPositionUpdated;
 	}
 
     public override void _UnhandledInput(InputEvent @event)
@@ -40,16 +38,12 @@ public partial class TileMapController : Controller
 
             if (mouseMapPosition != CurrentMapPosition)
             {
-                CurrentMapPosition = mouseMapPosition;
-                CurrentLocalPosition = _tileMap.MapToLocal(CurrentMapPosition);
-                _tileMap.ClearLayer((int)TileMapLayer.Select);
-                _tileMap.SetCell((int)TileMapLayer.Select, mouseMapPosition, (int)TileMapSource.Select, Vector2I.Zero);
+                EmitSignal("CurrentMapPositionUpdated", mouseMapPosition);
             }
         }
     }
 
-
-    public void SetCells(Array<Vector2> cells, TileMapLayer layer, bool clear)
+    public void SetCells(Array<Vector2> cells, TileMapId layer, bool clear)
     {
         if (clear)
         {
@@ -60,5 +54,13 @@ public partial class TileMapController : Controller
         {
             _tileMap.SetCell((int)layer, (Vector2I)cell, (int)layer, Vector2I.Zero);
         }
+    }
+
+    private void onCurrentMapPositionUpdated(Vector2 position)
+    {
+        CurrentMapPosition = position;
+        CurrentLocalPosition = _tileMap.MapToLocal((Vector2I)CurrentMapPosition);
+        _tileMap.ClearLayer((int)TileMapId.Select);
+        _tileMap.SetCell((int)TileMapId.Select, (Vector2I)CurrentMapPosition, (int)TileMapId.Select, Vector2I.Zero);
     }
 }

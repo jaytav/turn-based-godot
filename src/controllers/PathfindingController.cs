@@ -10,12 +10,7 @@ public partial class PathfindingController : Controller
         get
         {
             Array<Vector2> cells = new Array<Vector2>();
-            Array<Vector2> immovableCells = new Array<Vector2>();
-
-            foreach (Character character in _characters.GetChildren())
-            {
-                immovableCells.Add(_tilemap.LocalToMap(character.Position));
-            }
+            Array<Vector2> immovableCells = ImmovableCells;
 
             foreach (Vector2 cell in _cellPointMap.Keys)
             {
@@ -31,7 +26,23 @@ public partial class PathfindingController : Controller
         }
     }
 
+    public Array<Vector2> ImmovableCells
+    {
+        get
+        {
+            Array<Vector2> cells = new Array<Vector2>();
+
+            foreach (Character character in _characters.GetChildren())
+            {
+                cells.Add(_tilemap.LocalToMap(character.Position));
+            }
+
+            return cells;
+        }
+    }
+
     private AStar2D _astar = new AStar2D();
+    private CharacterController _characterController;
     private Node _characters;
     private TileMap _tilemap;
 
@@ -40,6 +51,8 @@ public partial class PathfindingController : Controller
 
 	public override void Run()
 	{
+        _characterController = GetNode<CharacterController>("/root/Main/Controllers/CharacterController");
+        _characterController.CharacterActionDone += refreshAstar;
         _characters = GetNode("/root/Main/World/Characters");
         _tilemap = GetNode<TileMap>("/root/Main/World/TileMap");
         refreshAstar();
@@ -65,8 +78,9 @@ public partial class PathfindingController : Controller
     private void refreshAstar()
     {
         _astar.Clear();
+        Array<Vector2> immovableCells = ImmovableCells;
 
-        foreach (Vector2 cell in _tilemap.GetUsedCells((int)TileMapController.TileMapLayer.Floor))
+        foreach (Vector2 cell in _tilemap.GetUsedCells((int)TileMapController.TileMapId.Floor))
         {
             long point = _astar.GetAvailablePointId();
             _astar.AddPoint(point, cell);
@@ -93,8 +107,14 @@ public partial class PathfindingController : Controller
                     continue;
                 }
 
+                // cells cannot path into immovable cells
+                if (immovableCells.Contains(relativeCell))
+                {
+                    continue;
+                }
+
                 long relativePoint = _cellPointMap[relativeCell];
-                _astar.ConnectPoints(point, relativePoint);
+                _astar.ConnectPoints(point, relativePoint, false);
             }
         }
     }

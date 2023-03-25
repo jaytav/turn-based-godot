@@ -13,7 +13,6 @@ script = ExtResource("1_qe0to")
 
 [node name="Move" type="Node" parent="Actions"]
 script = ExtResource("2_syhl4")
-_cost = 3
 
 [node name="Effects" type="Node" parent="."]
 

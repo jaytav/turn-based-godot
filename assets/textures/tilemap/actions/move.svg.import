@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b0m35uaxu31rq"
-path="res://.godot/imported/action.svg-c3362af429a27a2284e5b202349b3d1c.ctex"
+uid="uid://cwe16ry5gkfj0"
+path="res://.godot/imported/move.svg-81deefb0688988e34cdff2d120bc884f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/tilemap/action.svg"
-dest_files=["res://.godot/imported/action.svg-c3362af429a27a2284e5b202349b3d1c.ctex"]
+source_file="res://assets/textures/tilemap/actions/move.svg"
+dest_files=["res://.godot/imported/move.svg-81deefb0688988e34cdff2d120bc884f.ctex"]
 
 [params]
 
