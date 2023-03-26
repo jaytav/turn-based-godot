@@ -1,16 +1,6 @@
 using Godot;
 
-public abstract partial class Effect : Node
+public abstract partial class Effect : Resource
 {
-    public abstract void Do();
-
-    public override void _Ready()
-    {
-        GetNode<Character>("../../").TurnEnded += onCharacterTurnEnded;
-    }
-
-    private void onCharacterTurnEnded(Character character)
-    {
-        Do();
-    }
+    public abstract void Do(Character character);
 }

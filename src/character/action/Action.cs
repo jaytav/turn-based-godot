@@ -7,7 +7,7 @@ public abstract partial class Action : Node
     private int _cost;
 
     public Character Character;
-    public BoundStat ActionPoints;
+    public Stat ActionPoints;
 
     public TileMapController.TileMapId TileMapId = TileMapController.TileMapId.Move;
     public TileMapController.TileMapId TileMapSecondaryId = TileMapController.TileMapId.MoveSecondary;
@@ -21,7 +21,7 @@ public abstract partial class Action : Node
     public override void _Ready()
     {
         Character = GetNode<Character>("../../");
-        ActionPoints = Character.GetNode<BoundStat>("Stats/ActionPoints");
+        ActionPoints = Character.Data.Stats["ActionPoints"];
     }
 
     public virtual int Cost(Dictionary context)
