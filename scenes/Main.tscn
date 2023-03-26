@@ -33,10 +33,6 @@ script = ExtResource("2_bglrt")
 
 [node name="Characters" type="Node" parent="World"]
 
-[node name="Player" parent="World/Characters" instance=ExtResource("3_5t1dp")]
-modulate = Color(0.345098, 0.65098, 0.901961, 1)
-position = Vector2(544, 304)
-
 [node name="Enemy" parent="World/Characters" instance=ExtResource("3_5t1dp")]
 modulate = Color(0.882353, 0.494118, 0.494118, 1)
 position = Vector2(608, 272)
